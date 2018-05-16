@@ -25,9 +25,10 @@ import { SearchSpellcheck } from "./api/search-spellcheck";
 
 @Injectable()
 export class SearchService {
+    
+  private httpHeaders = new HttpHeaders({ 'Origin': `${environment.origin}` }); 
 
-  constructor(private httpClient: HttpClient, private httpHeaders: HttpHeaders) {
-      httpHeaders.set('Origin', `${environment.origin}`);
+  constructor(private httpClient: HttpClient) {
   }
 
   search(q: string, start: number = 0, rows: number = 10): Observable<SearchResult> {
