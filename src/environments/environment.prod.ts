@@ -16,12 +16,13 @@
 
 export const environment = {
   production: true,
+  origin : "https://mavenhub-search.herokuapp.com",
   search: {
-    endpoint : 'https://search.maven.org/solrsearch/select'
+    endpoint : 'https://corsit.herokuapp.com/https://search.maven.org/solrsearch/select'
   },
   stats: {
-    endpoint : 'https://search.maven.org/quickstats'
+    endpoint : 'https://corsit.herokuapp.com/https://search.maven.org/quickstats'
   },
-  smoBaseUrl: 'https://search.maven.org/remotecontent?filepath=',
+  smoBaseUrl: 'https://corsit.herokuapp.com/https://search.maven.org/remotecontent?filepath=',
   repositoryBaseUrl: 'https://repo1.maven.org/maven2'
 };

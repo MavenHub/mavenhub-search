@@ -21,6 +21,7 @@
 
 export const environment = {
   production: false,
+  origin : "http://localhost:8080",
   search: {
     endpoint : 'http://localhost:8080/central/solrsearch/select'
   },

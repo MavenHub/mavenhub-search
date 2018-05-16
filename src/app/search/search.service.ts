@@ -15,7 +15,7 @@
  */
 
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { environment } from "../../environments/environment";
 import { Observable } from "rxjs/Observable";
 import { SearchResult } from "./api/search-result";
@@ -26,13 +26,15 @@ import { SearchSpellcheck } from "./api/search-spellcheck";
 @Injectable()
 export class SearchService {
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private httpHeaders: HttpHeaders) {
+      httpHeaders.set('Origin', `${environment.origin}`);
   }
 
   search(q: string, start: number = 0, rows: number = 10): Observable<SearchResult> {
+
     return this
       .httpClient
-      .get<SearchResult>(`${environment.search.endpoint}?q=${q}&start=${start}&rows=${rows}`)
+      .get<SearchResult>(`${environment.search.endpoint}?q=${q}&start=${start}&rows=${rows}`, { headers : this.httpHeaders })
       .map((searchResult:SearchResult) => {
         searchResult.response.docs.forEach((doc:Doc) => {
           this.addDownloadLinks(doc);
@@ -51,7 +53,7 @@ export class SearchService {
   count(q: string): Observable<number> {
     return this
       .httpClient
-      .get<SearchResult>(`${environment.search.endpoint}?q=${q}&start=0&rows=0`)
+      .get<SearchResult>(`${environment.search.endpoint}?q=${q}&start=0&rows=0`, { headers : this.httpHeaders })
       .map((searchResult: SearchResult) => {
         return searchResult.response.numFound;
       });
