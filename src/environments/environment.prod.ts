@@ -23,6 +23,6 @@ export const environment = {
   stats: {
     endpoint : 'https://corsit.herokuapp.com/https://search.maven.org/quickstats'
   },
-  smoBaseUrl: 'https://corsit.herokuapp.com/https://search.maven.org/remotecontent?filepath=',
+  smoBaseUrl: 'https://search.maven.org/remotecontent?filepath=',
   repositoryBaseUrl: 'https://repo1.maven.org/maven2'
 };
